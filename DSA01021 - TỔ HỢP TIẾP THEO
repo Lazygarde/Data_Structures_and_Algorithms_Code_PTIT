@@ -12,10 +12,12 @@ int main()
         int n, k, s = 0, ok = 0;
         cin >> n >> k;
         int a[k + 1], b[k + 1];
+        map<int, int> m;
         for (int i = 1; i <= k; i++)
         {
             cin >> a[i];
             b[i] = a[i];
+            m[a[i]]++;
         }
         for (int i = k; i >= 1; i--)
         {
@@ -30,7 +32,7 @@ int main()
         }
         for (int i = 1; i <= k; i++)
         {
-            if (a[i] != b[i])
+            if (m[a[i]] == 0)
                 s++;
         }
         if (ok == 0)
