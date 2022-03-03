@@ -73,7 +73,7 @@ int main()
 			if (f[k.fi] == 0)
 				f[k.fi] = k.se;
 			q1.push(k);
-			if (k.se == 16)
+			if (k.se == 14)
 				break;
 		}
 		while (q2.size())
@@ -87,7 +87,7 @@ int main()
 			q2.push(k);
 			k.fi = right2(y2.fi);
 			q2.push(k);
-			if (k.se == 16)
+			if (k.se == 14)
 				break;
 		}
 		cout << mim << endl;
