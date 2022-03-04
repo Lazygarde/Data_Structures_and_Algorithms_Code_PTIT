@@ -7,7 +7,6 @@ int main()
     cin.tie(0);
     int t;
     cin >> t;
-    cin.ignore();
     while (t--)
     {
         int n;
