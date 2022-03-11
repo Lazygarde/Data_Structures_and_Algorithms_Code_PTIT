@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
+#define endl "\n"
 using namespace std;
-struct data
+struct point
 {
-    int fi;
-    int se;
-    int th;
+    int x, y, s;
 };
 int main()
 {
@@ -14,50 +13,45 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, m, ans = -1;
+        int n, m, ans = 1e9;
         cin >> n >> m;
-        struct data x, y;
-        queue<data> q;
-        vector<vector<int>> a(n + 1, vector<int>(m + 1));
         vector<vector<bool>> check(n + 1, vector<bool>(m + 1, 1));
+        vector<vector<int>> a(n + 1, vector<int>(m + 1));
         for (int i = 1; i <= n; i++)
-        {
             for (int j = 1; j <= m; j++)
-            {
                 cin >> a[i][j];
-            }
-        }
-        check[1][1] = 0;
-        x.fi = 1;
-        x.se = 1;
-        x.th = 0;
-        q.push(x);
+        point st, k;
+        queue<point> q;
+        st.x = st.y = 1;
+        st.s = 0;
+        q.push(st);
         while (q.size())
         {
-            x = q.front();
+            st = q.front();
             q.pop();
-            if (x.fi == n && x.se == m)
+            if (st.x == n && st.y == m)
+                ans = min(ans, st.s);
+            k = st;
+            k.s++;
+            if (st.x + a[st.x][st.y] <= n && check[st.x + a[st.x][st.y]][st.y])
             {
-                ans = x.th;
-                break;
+                check[st.x + a[st.x][st.y]][st.y] = 0;
+                k.x += a[st.x][st.y];
+                q.push(k);
+                k.x -= a[st.x][st.y];
             }
-            y.fi = x.fi;
-            y.se = x.se + a[x.fi][x.se];
-            y.th = x.th + 1;
-            if (y.fi <= n && y.se <= m && check[y.fi][y.se])
+            if (st.y + a[st.x][st.y] <= m && check[st.x][st.y + a[st.x][st.y]])
             {
-                check[y.fi][y.se] = 0;
-                q.push(y);
-            }
-            y.fi = x.fi + a[x.fi][x.se];
-            y.se = x.se;
-            if (y.fi <= n && y.se <= m && check[y.fi][y.se])
-            {
-                check[y.fi][y.se] = 0;
-                q.push(y);
+                check[st.x][st.y + a[st.x][st.y]] = 0;
+                k.y += a[st.x][st.y];
+                q.push(k);
+                k.y -= a[st.x][st.y];
             }
         }
-        cout << ans << endl;
+        if (ans == 1e9)
+            cout << -1 << endl;
+        else
+            cout << ans << endl;
     }
 }
 /* Do Xuan Huong
