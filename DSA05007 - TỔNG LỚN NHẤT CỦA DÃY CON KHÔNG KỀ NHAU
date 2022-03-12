@@ -11,15 +11,14 @@ int main()
     {
         int n;
         cin >> n;
-        int a[n + 2], ans = 0;
+        int a[n + 2];
         a[0] = a[1] = 0;
         for (int i = 2; i <= n + 1; i++)
         {
             cin >> a[i];
             a[i] = max(a[i] + a[i - 2], a[i - 1]);
-            ans = max(ans, a[i]);
         }
-        cout << ans << endl;
+        cout << max(a[n], a[n + 1]) << endl;
     }
 }
 /* Do Xuan Huong
