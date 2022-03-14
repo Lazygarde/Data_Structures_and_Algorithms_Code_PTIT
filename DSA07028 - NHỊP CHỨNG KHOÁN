@@ -11,7 +11,7 @@ int main()
     {
         int n;
         cin >> n;
-        int a[n + 1], ans[n + 1] = {};
+        int a[n + 1];
         stack<int> st;
         st.push(0);
         for (int i = 1; i <= n; i++)
