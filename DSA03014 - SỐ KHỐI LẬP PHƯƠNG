@@ -28,7 +28,7 @@ int main()
     int t;
     cin >> t;
     vector<string> f;
-    for (long long i = 1; i <= 1e6; i++)
+    for (long long i = 1; i <= 50; i++)
         f.push_back(to_string(i * i * i));
     while (t--)
     {
