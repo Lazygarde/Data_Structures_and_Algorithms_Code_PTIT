@@ -4,7 +4,7 @@ using namespace std;
 int n, m, u, v, ok;
 vector<int> check;
 vector<vector<int>> a;
-void bfs(int u)
+void dfs(int u)
 {
     for (auto v : a[u])
     {
@@ -16,7 +16,7 @@ void bfs(int u)
         else if (!check[v])
         {
             check[v] = 3 - check[u];
-            bfs(v);
+            dfs(v);
         }
     }
 }
@@ -45,7 +45,7 @@ int main()
             if (!check[i])
             {
                 check[i] = 1;
-                bfs(i);
+                dfs(i);
             }
         }
         if (ok)
